@@ -1,4 +1,4 @@
-﻿# React Week 5 — Redux State Management
+﻿# React Week 5: Redux State Management
 
 A React app built with TypeScript and Vite that demonstrates
 global state management using Redux without Redux Toolkit.
