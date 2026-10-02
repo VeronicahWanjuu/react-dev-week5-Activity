@@ -8,7 +8,10 @@ const initialState: CounterState = {
   value: 0,
 };
 
-export const counterReducer = (state = initialState, action: any): CounterState => {
+export const counterReducer = (
+  state = initialState,
+  action: { type: string },
+): CounterState => {
   switch (action.type) {
     case INCREMENT:
       return { value: state.value + 1 };
