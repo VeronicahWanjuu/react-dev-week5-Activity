@@ -1,0 +1,41 @@
+﻿.box {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  padding: 20px;
+  background-color: #f5f5f5;
+  border-radius: 10px;
+  width: 250px;
+  margin: 40px auto;
+}
+
+.num {
+  font-size: 2rem;
+  font-weight: bold;
+  color: #333;
+}
+
+.btn {
+  padding: 10px 15px;
+  margin: 5px;
+  font-size: 16px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  background-color: #1E90FF;
+  color: white;
+}
+
+.btn:hover {
+  background-color: #1a7de0;
+}
+
+.resetBtn {
+  background-color: #e94560;
+}
+
+.resetBtn:hover {
+  background-color: #c73652;
+}
