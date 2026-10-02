@@ -1,75 +1,76 @@
-# React + TypeScript + Vite
+﻿# React Week 5 — Redux State Management
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+A React app built with TypeScript and Vite that demonstrates
+global state management using Redux without Redux Toolkit.
 
-Currently, two official plugins are available:
+## How to Install and Run
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+1. Clone the repository
+   git clone https://github.com/VeronicahWanjuu/react-dev-week5-Activity.git
 
-## React Compiler
+2. Go into the project folder
+   cd react-dev-week5-Activity
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+3. Install dependencies
+   npm install
 
-## Expanding the ESLint configuration
+4. Start the dev server (uses Vite)
+   npm run dev
 
-If you are developing a production application, we recommend updating the configuration to enable type-aware lint rules:
+5. Open browser at http://localhost:5173
 
-```js
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
+## Project Structure
 
-      // Remove tseslint.configs.recommended and replace with this
-      tseslint.configs.recommendedTypeChecked,
-      // Alternatively, use this for stricter rules
-      tseslint.configs.strictTypeChecked,
-      // Optionally, add this for stylistic rules
-      tseslint.configs.stylisticTypeChecked,
+src/
+├── components/
+│   ├── Counter.tsx
+│   └── Counter.module.css
+├── store/
+│   ├── store.ts
+│   ├── actions/
+│   │   └── counterActions.ts
+│   └── reducers/
+│       ├── counterReducer.ts
+│       └── index.ts
+├── App.tsx
+└── main.tsx
 
-      // Other configs...
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## How Redux Works Here
 
-```
+The store holds the global state for the whole app.
+Actions are plain objects that describe what happened.
+The reducer takes the current state and an action and
+returns a new state. The Provider wraps the whole app
+so any component can access the store. useSelector
+reads from the store and useDispatch sends actions to it.
 
-You can also install [eslint-plugin-react-x](https://npmx.dev/package/eslint-plugin-react-x) and [eslint-plugin-react-dom](https://npmx.dev/package/eslint-plugin-react-dom) for React-specific lint rules:
+## Middleware
 
-```js
-// eslint.config.js
-import reactX from 'eslint-plugin-react-x'
-import reactDom from 'eslint-plugin-react-dom'
+redux-logger is added as middleware so every action and
+state change gets logged to the browser console. This
+made debugging much easier during development because
+I could see exactly what was happening with every click.
 
-export default defineConfig([
-  globalIgnores(['dist']),
-  {
-    files: ['**/*.{ts,tsx}'],
-    extends: [
-      // Other configs...
-      // Enable lint rules for React
-      reactX.configs['recommended-typescript'],
-      // Enable lint rules for React DOM
-      reactDom.configs.recommended,
-    ],
-    languageOptions: {
-      parserOptions: {
-        project: ['./tsconfig.node.json', './tsconfig.app.json'],
-        tsconfigRootDir: import.meta.dirname,
-      },
-      // other options...
-    },
-  },
-])
+## Challenges
 
-```
+Setting up the store manually without Redux Toolkit was
+harder than I expected. I kept getting TypeScript errors
+with the logger middleware types until I installed
+@types/redux-logger separately. That taught me that some
+libraries need their types installed as a separate package.
+
+Combining reducers with combineReducers also confused me
+at first because I did not understand why the state shape
+changed from state.value to state.counter.value. Once I
+understood that each reducer manages its own slice of state
+it made a lot more sense.
+
+## Libraries Used
+
+- React 18
+- TypeScript
+- Vite
+- Redux
+- React-Redux
+- Redux-Logger
+- ESLint
